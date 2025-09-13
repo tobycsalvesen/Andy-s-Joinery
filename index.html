@@ -103,6 +103,45 @@
       background-size: cover;
     }
 
+    /* --- Mobile Nav v2 --- */
+    .mobile-nav { position: sticky; top: 0; z-index: 9999; }
+    .mobile-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .mobile-logo { display:block; border-radius:6px; }
+    .hamburger { font-size:26px; background:none; border:0; cursor:pointer; color:#382910; padding:6px 10px; border-radius:8px; }
+    .hamburger:focus-visible { outline:3px solid #b26e33; outline-offset:3px; }
+
+    .mobile-drawer {
+      position: fixed; inset: 56px 0 0 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(6px);
+      transform: translateY(-8px);
+      opacity: 0; pointer-events: none;
+      transition: transform .25s ease, opacity .25s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+    body.menu-open .mobile-drawer {
+      transform: translateY(0);
+      opacity: 1; pointer-events: auto;
+    }
+    .mobile-links { list-style:none; margin:0; padding:16px; }
+    .mobile-links li { border-bottom:1px solid rgba(0,0,0,0.06); }
+    .mobile-links a {
+      display:block; padding:14px 6px; text-decoration:none; color:#382910; font-weight:600; font-size:1.05rem;
+    }
+    .mobile-links a.callout { color:#b26e33; }
+    .mobile-links a.call-btn {
+      margin-top:12px; background:#25D366; color:#fff; text-align:center; border-radius:8px; padding:12px; display:block;
+    }
+    @media(min-width:769px){.mobile-nav{display:none;}}
+    @media(max-width:768px){nav.primary{display:none;}}
+
     /* Desktop Primary nav */
     nav.primary{background:var(--walnut);display:flex;justify-content:center;gap:20px;padding:15px;position:sticky;top:0;z-index:999}
     nav.primary a{color:#fff;text-decoration:none;font-weight:600}
@@ -188,12 +227,47 @@
     /* --- Section Rhythm & Alternating Background Fix --- */
     section { background:#ffffff; }
     section.bg-alt { background:#f4f1ed; }
-  </style>
+  
+/* --- Mobile: remove floating top bar; use floating button for menu --- */
+.mobile-bar { display: none; } /* hide the top mobile bar on all sizes */
+.menu-fab{
+  position: fixed; right: 18px; bottom: 18px; z-index: 10050;
+  width: 54px; height: 54px; border-radius: 9999px; border: 0; cursor: pointer;
+  background: var(--clay); color: #fff; font-size: 24px; line-height: 54px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+.menu-fab:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+
+/* Mobile drawer should cover full screen now that bar is hidden */
+.mobile-drawer { inset: 0; padding-top: 0; }
+
+</style>
 </head>
 <body>
 
   <!-- Skip link -->
   <a class="sr-only sr-only-focusable" href="#main">Skip to content</a>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" role="navigation" aria-label="Mobile">
+    <div class="mobile-bar">
+      <img src="logo.png" alt="Andrew Baldwin Logo" class="mobile-logo" width="36" height="36">
+      <button class="hamburger" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle menu">☰</button>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" hidden>
+      <ul class="mobile-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#crafted-transformations">Gallery</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact" class="callout">Contact</a></li>
+        <li><a href="tel:07813456984" class="call-btn">Call Andy</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- Desktop Primary nav -->
   <nav class="primary" aria-label="Primary">
@@ -521,6 +595,10 @@
     <p>© 2025 Andrew Baldwin Joinery. Website by Toby Salvesen</p>
   </footer>
 
+  <!-- Floating Menu Button (opens drawer on mobile & desktop) -->
+  <button class="menu-fab" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">☰</button>
+
+
   <!-- JS -->
   <script>
     // Sticky shadow on primary nav
@@ -532,18 +610,19 @@
 
     // Mobile drawer behaviour + scroll lock
     (function(){
-      const btn=document.querySelector('.hamburger');
-      const drawer=document.getElementById('mobile-drawer');
+      const btn = document.querySelector('.hamburger');         // may not exist
+      const fab = document.querySelector('.menu-fab');          // floating menu button (exists)
+      const drawer = document.getElementById('mobile-drawer');
       function openMenu(){
         document.body.classList.add('menu-open');
-        btn.setAttribute('aria-expanded','true');
+        if(btn) btn.setAttribute('aria-expanded','true'); if(fab) fab.setAttribute('aria-expanded','true');
         drawer.hidden=false;
         document.documentElement.style.overflow='hidden';
         document.body.style.overflow='hidden';
       }
       function closeMenu(){
         document.body.classList.remove('menu-open');
-        btn.setAttribute('aria-expanded','false');
+        if(btn) btn.setAttribute('aria-expanded','false'); if(fab) fab.setAttribute('aria-expanded','false');
         setTimeout(()=>{drawer.hidden=true;},250);
         document.documentElement.style.overflow='';
         document.body.style.overflow='';
@@ -551,6 +630,10 @@
       btn?.addEventListener('click',()=>{
         const expanded=btn.getAttribute('aria-expanded')==='true';
         expanded?closeMenu():openMenu();
+      });
+      fab?.addEventListener('click',()=>{
+        const expanded = fab.getAttribute('aria-expanded') === 'true';
+        expanded ? closeMenu() : openMenu();
       });
       drawer?.addEventListener('click',(e)=>{ if(e.target.tagName==='A') closeMenu(); });
       document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'&&document.body.classList.contains('menu-open')) closeMenu(); });
