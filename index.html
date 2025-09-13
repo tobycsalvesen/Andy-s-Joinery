@@ -577,38 +577,26 @@
       <p><strong>Phone:</strong> <a href="tel:07813456984">07813 456984</a><br/>
          <strong>Email:</strong> <a href="mailto:andybaldwin02@outlook.com">andybaldwin02@outlook.com</a></p>
 
-      <form id="contact-form" class="contact-form" action="https://formspree.io/f/mzzawjog" method="POST">
-        <input type="hidden" name="_redirect" value="https://yourdomain.com/thank-you.html">
-        <h3>Request a Quote or Send a Message</h3>
+      <form id="contact-form" class="contact-form" 
+      action="https://formspree.io/f/mzzawjog" 
+      method="POST">
+  <!-- Redirect after successful submission (change to your real domain or remove) -->
+  <input type="hidden" name="_redirect" value="https://yourdomain.com/thank-you.html">
 
-        <!-- Honeypot -->
-        <label class="hp" for="website">Website</label>
-        <input class="hp" id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  <!-- Honeypot field (spam protection) -->
+  <input type="text" id="website" name="website" style="display:none">
 
-        <label for="name">Your Name</label>
-        <input id="name" name="name" type="text" required />
+  <label for="name">Your Name</label>
+  <input type="text" id="name" name="name" required>
 
-        <label for="email">Your Email</label>
-        <input id="email" name="email" type="email" required />
+  <label for="email">Your Email</label>
+  <input type="email" id="email" name="email" required>
 
-        <label for="service">Service Interested In</label>
-        <select id="service" name="service">
-          <option>General Enquiry</option>
-          <option>Kitchens</option>
-          <option>Wardrobes</option>
-          <option>Gates &amp; Fencing</option>
-          <option>Timber Buildings</option>
-          <option>Plasterboarding</option>
-          <option>Project Management</option>
-          <option>Other</option>
-        </select>
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
 
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button type="submit">Send Message</button>
-        <p id="form-success" class="form-success" style="display:none;">Thanks for reaching out! I’ll be in touch shortly.</p>
-      </form>
+  <button type="submit">Send Message</button>
+</form>
 
       <a class="cta-button" href="https://wa.me/447813456984?text=Hi%20Andy%2C%20I'm%20interested%20in%20your%20carpentry%20services." target="_blank" rel="noopener">Message us on WhatsApp</a>
     </div>
@@ -710,35 +698,6 @@
       btt.style.display = window.scrollY > 300 ? "flex" : "none";
     });
 
-    // Formspree + honeypot
-    const form = document.getElementById("contact-form");
-    if (form) {
-      form.addEventListener("submit", async (e) => {
-        if (document.getElementById('website').value) { e.preventDefault(); return; } // bot
-        e.preventDefault();
-        const res = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { "Accept": "application/json" }
-        });
-        if (res.ok) {
-          form.reset();
-          const ok = document.getElementById("form-success");
-          if (ok) ok.style.display = "block";
-          ok?.scrollIntoView({behavior:'smooth'});
-        }
-      });
-    }
-
-    // Before/After slider logic
-    const baRange = document.getElementById('baRange');
-    const baAfter = document.querySelector('.ba-after');
-    if (baRange && baAfter) {
-      baRange.addEventListener('input', () => {
-        const v = baRange.value; // 0..100
-        baAfter.style.clipPath = `inset(0 0 0 ${v}%)`;
-      });
-    }
-  </script>
+    </script>
 </body>
 </html>
