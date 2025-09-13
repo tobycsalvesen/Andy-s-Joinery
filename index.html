@@ -241,6 +241,37 @@
 /* Mobile drawer should cover full screen now that bar is hidden */
 .mobile-drawer { inset: 0; padding-top: 0; }
 
+
+/* === FINAL OVERRIDES === */
+/* Default: hide the FAB (only show on mobile) */
+.menu-fab { display: none; }
+
+/* Mobile rules */
+@media (max-width: 768px) {
+  /* Hide BOTH top bars on mobile */
+  .mobile-bar { display: none !important; }
+  nav.primary { display: none !important; }
+
+  /* Show the floating menu button only on mobile */
+  .menu-fab { 
+    display: inline-flex !important; align-items: center; justify-content: center;
+    position: fixed; right: 18px; bottom: 18px; z-index: 10050;
+    width: 54px; height: 54px; border-radius: 9999px; border: 0; cursor: pointer;
+    background: var(--clay); color: #fff; font-size: 24px; line-height: 1;
+    box-shadow: 0 8px 20px rgba(0,0,0,.18);
+  }
+  .menu-fab:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+
+  /* Drawer covers full screen on mobile (since there is no top bar) */
+  .mobile-drawer { inset: 0 !important; padding-top: 0 !important; }
+}
+
+/* Desktop rules */
+@media (min-width: 769px) {
+  /* Hide mobile nav entirely and the FAB on desktop */
+  .mobile-nav, .menu-fab { display: none !important; }
+}
+
 </style>
 </head>
 <body>
