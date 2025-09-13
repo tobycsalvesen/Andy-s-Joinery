@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>Andrew Baldwin | Expert Joinery & Carpentry in the Scottish Borders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="logo.png" />
 
-  <title>Andrew Baldwin | Expert Joinery & Carpentry in East Lothian</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Joinery and carpentry services by Andrew Baldwin across Scottish Borders, East Lothian and Edinburgh. Bespoke interiors, kitchens, decking, and more – built with precision and care." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Andrew Baldwin | Expert Joiner & Carpenter" />
-  <meta property="og:description" content="Joinery and carpentry services across the Scottish Borders, East Lothian and Edinburgh." />
+  <meta name="description" content="Joinery and carpentry by Andrew Baldwin — based in the Scottish Borders and serving East Lothian and Edinburgh. Bespoke interiors, kitchens, decking, and more — built with precision and care." />
+  <meta property="og:title" content="Andrew Baldwin | Expert Joiner & Carpenter (Scottish Borders)" />
+  <meta property="og:description" content="Based in the Scottish Borders, serving East Lothian and Edinburgh with bespoke joinery and carpentry." />
   <meta property="og:image" content="logo.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://andrewbaldwinjoinery.co.uk" />
 
-  <!-- LocalBusiness schema (expanded) -->
+  <!-- Schema: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -25,14 +22,14 @@
     "image": "https://example.com/logo.png",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "East Lothian",
+      "addressLocality": "Scottish Borders",
       "addressRegion": "Scotland",
       "addressCountry": "UK"
     },
     "areaServed":[
-      {"@type":"City","name":"Edinburgh"},
+      {"@type":"AdministrativeArea","name":"Scottish Borders"},
       {"@type":"AdministrativeArea","name":"East Lothian"},
-      {"@type":"AdministrativeArea","name":"Scottish Borders"}
+      {"@type":"City","name":"Edinburgh"}
     ],
     "telephone": "+447813456984",
     "url": "https://andrewbaldwinjoinery.co.uk",
@@ -40,25 +37,25 @@
   }
   </script>
 
-  <!-- FAQ schema -->
+  <!-- Schema: FAQ -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
       {"@type":"Question","name":"Do you supply kitchens or fit only?","acceptedAnswer":{"@type":"Answer","text":"We can do both. We often plan and fit Howdens but are happy to work with your supplier."}},
-      {"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"Edinburgh, East Lothian and the Scottish Borders."}},
+      {"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We’re based in the Scottish Borders and serve East Lothian and Edinburgh."}},
       {"@type":"Question","name":"Can you project manage other trades?","acceptedAnswer":{"@type":"Answer","text":"Yes. We coordinate schedules and quality for a smooth build."}}
     ]
   }
   </script>
 
-  <!-- Fonts (display swap via Google; exact weights only) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Icons (kept FA for now; consider inlining SVGs later) -->
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
@@ -68,6 +65,7 @@
       --ivory:#fffdf6;
       --charcoal:#222;
     }
+
     /* Base */
     html,body{margin:0;padding:0}
     body{
@@ -92,7 +90,10 @@
     /* Utility */
     .container{max-width:1100px;margin:auto;padding:0 20px}
     .section{padding:72px 20px}
+    .section-title{font-size:2rem;margin:0 0 16px;border-left:6px solid var(--clay);padding-left:12px}
+
     .section-divider{
+      display:block;
       height:8px;
       width:100%;
       margin:0;
@@ -102,16 +103,46 @@
       background-size: cover;
     }
 
-    /* Mobile top nav */
-    .mobile-nav{background:#fff;padding:10px 20px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;align-items:center;gap:10px}
-    .menu-toggle{font-size:24px;background:none;border:0;color:#382910;cursor:pointer}
-    .nav-links{display:none;list-style:none;margin:0;padding:0}
-    .menu-open .nav-links{display:block}
-    .nav-links li{margin-top:10px}
-    .nav-links a{text-decoration:none;color:#382910}
-    .call-cta{display:inline-block;background:#25d366;color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:700}
+    /* --- Mobile Nav v2 --- */
+    .mobile-nav { position: sticky; top: 0; z-index: 9999; }
+    .mobile-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .mobile-logo { display:block; border-radius:6px; }
+    .hamburger { font-size:26px; background:none; border:0; cursor:pointer; color:#382910; padding:6px 10px; border-radius:8px; }
+    .hamburger:focus-visible { outline:3px solid #b26e33; outline-offset:3px; }
 
-    /* Sticky primary nav */
+    .mobile-drawer {
+      position: fixed; inset: 56px 0 0 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(6px);
+      transform: translateY(-8px);
+      opacity: 0; pointer-events: none;
+      transition: transform .25s ease, opacity .25s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+    body.menu-open .mobile-drawer {
+      transform: translateY(0);
+      opacity: 1; pointer-events: auto;
+    }
+    .mobile-links { list-style:none; margin:0; padding:16px; }
+    .mobile-links li { border-bottom:1px solid rgba(0,0,0,0.06); }
+    .mobile-links a {
+      display:block; padding:14px 6px; text-decoration:none; color:#382910; font-weight:600; font-size:1.05rem;
+    }
+    .mobile-links a.callout { color:#b26e33; }
+    .mobile-links a.call-btn {
+      margin-top:12px; background:#25D366; color:#fff; text-align:center; border-radius:8px; padding:12px; display:block;
+    }
+    @media(min-width:769px){.mobile-nav{display:none;}}
+    @media(max-width:768px){nav.primary{display:none;}}
+
+    /* Desktop Primary nav */
     nav.primary{background:var(--walnut);display:flex;justify-content:center;gap:20px;padding:15px;position:sticky;top:0;z-index:999}
     nav.primary a{color:#fff;text-decoration:none;font-weight:600}
     nav.sticky-shadow{box-shadow:0 4px 8px rgba(0,0,0,.1)}
@@ -125,6 +156,7 @@
       background-repeat:repeat;
       background-position:center;
       background-size:cover;
+      text-align:left;
     }
     .hero::before{
       content:"";
@@ -138,9 +170,6 @@
     .hero p{font-size:1.1rem;margin:0 0 12px}
     .cta-button{display:inline-block;margin-top:10px;padding:12px 20px;background:var(--clay);color:#fff;border-radius:6px;text-decoration:none;font-weight:700;transition:.2s transform,.3s background}
     .cta-button:hover{background:#914d1c;transform:scale(1.04)}
-
-    /* Sections */
-    .section-title{font-size:2rem;margin:0 0 16px;border-left:6px solid var(--clay);padding-left:12px}
 
     /* About */
     .about{display:flex;gap:40px;flex-wrap:wrap;align-items:center}
@@ -160,12 +189,12 @@
     .accordion-content{background:#f8f6f2;padding:0 1rem;border-radius:0 0 6px 6px;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden;max-height:0;transition:max-height .35s ease,padding .25s ease}
     .accordion-content.open{padding:1rem}
     .accordion-content .image-block{display:inline-block;margin:6px;vertical-align:top}
-    .accordion-content img{max-width:340px;width:100%;height:auto;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer;aspect-ratio:4/3;object-fit:cover}
+    .accordion-content img{max-width:340px;width:100%;height:auto;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.1);cursor:pointer;aspect-ratio:4/3;object-fit:cover}
 
-    /* Before/After slider (Featured Project) */
+    /* Featured Project - Before/After slider */
     .ba-wrap{max-width:900px;margin:16px 0; position:relative}
-    .ba-frame{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,.1)}
-    .ba-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+    .ba-frame{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,.1); background:#111}
+    .ba-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#111}
     .ba-after{clip-path:inset(0 0 0 50%)} /* start at middle */
     .ba-slider{width:100%}
 
@@ -180,23 +209,11 @@
     .contact-form label{display:block;margin-top:10px;font-weight:700}
     .contact-form input,.contact-form textarea,.contact-form select{width:100%;padding:10px;margin-top:4px;border:1px solid #ccc;border-radius:5px}
     .contact-form button{margin-top:15px;background:#382910;color:#fff;border:0;padding:10px 20px;font-weight:700;cursor:pointer;border-radius:5px}
-    /* Honeypot */
     .hp{position:absolute; left:-5000px;}
 
     /* Back to top */
     #backToTop{position:fixed;right:20px;bottom:20px;background:#333;color:#fff;border-radius:50%;width:42px;height:42px;display:none;align-items:center;justify-content:center;text-decoration:none}
     #backToTop i{line-height:42px}
-
-    /* WhatsApp */
-    .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25D366;color:#fff;border-radius:50%;font-size:24px;padding:14px;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,.15);text-align:center}
-
-    /* Simple fade-in on view */
-    .fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-    .fade-in.in-view{opacity:1;transform:none}
-
-    /* Alternating section background */
-    section:nth-of-type(even){background:#f4f1ed}
-    section:nth-of-type(odd){background:#ffffff}
 
     /* Footer with texture + overlay */
     footer{
@@ -207,10 +224,9 @@
     footer *{position:relative; z-index:1}
     footer img{width:80px;height:auto;margin-bottom:12px}
 
-    @media (max-width:768px){
-      .hero h1{font-size:2.1rem}
-      .call-cta{display:inline-block}
-    }
+    /* --- Section Rhythm & Alternating Background Fix --- */
+    section { background:#ffffff; }
+    section.bg-alt { background:#f4f1ed; }
   </style>
 </head>
 <body>
@@ -218,38 +234,28 @@
   <!-- Skip link -->
   <a class="sr-only sr-only-focusable" href="#main">Skip to content</a>
 
-  <!-- Mobile nav -->
-  <nav class="mobile-nav">
-    <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.body.classList.toggle('menu-open')">☰</button>
-    <a class="call-cta" href="tel:07813456984">Call Andy</a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#crafted-transformations">Gallery</a></li>
-      <li><a href="#credentials">Credentials</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" role="navigation" aria-label="Mobile">
+    <div class="mobile-bar">
+      <img src="logo.png" alt="Andrew Baldwin Logo" class="mobile-logo" width="36" height="36">
+      <button class="hamburger" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle menu">☰</button>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" hidden>
+      <ul class="mobile-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#crafted-transformations">Gallery</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact" class="callout">Contact</a></li>
+        <li><a href="tel:07813456984" class="call-btn">Call Andy</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <div class="section-divider"></div>
-
-  <!-- Hero -->
-  <header class="hero section fade-in" id="top">
-    <div class="container wrap">
-      <picture>
-        <source srcset="logo.avif" type="image/avif">
-        <source srcset="logo.webp" type="image/webp">
-        <img class="logo" src="logo.png" width="140" height="140" alt="Andrew Baldwin Logo" decoding="async" />
-      </picture>
-      <div>
-        <h1>Andrew Baldwin – Exceptional Joinery, Built to Last</h1>
-        <p>From bespoke interiors to outdoor structures — expertly crafted across the Scottish Borders, East Lothian and Edinburgh.</p>
-        <p><a class="cta-button" href="#contact">Request a Quote</a></p>
-      </div>
-    </div>
-  </header>
-
-  <!-- Primary nav -->
+  <!-- Desktop Primary nav -->
   <nav class="primary" aria-label="Primary">
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -260,6 +266,21 @@
     <a href="#certifications">Certifications</a>
     <a href="#contact">Contact</a>
   </nav>
+
+  <header class="hero section fade-in" id="top">
+    <div class="container wrap">
+      <picture>
+        <source srcset="logo.avif" type="image/avif">
+        <source srcset="logo.webp" type="image/webp">
+        <img class="logo" src="logo.png" width="140" height="140" alt="Andrew Baldwin Logo" decoding="async" />
+      </picture>
+      <div>
+        <h1>Andrew Baldwin – Exceptional Joinery, Built to Last</h1>
+        <p>Based in the Scottish Borders and serving East Lothian and Edinburgh.</p>
+        <p><a class="cta-button" href="#contact">Request a Quote</a></p>
+      </div>
+    </div>
+  </header>
 
   <main id="main">
 
@@ -276,7 +297,7 @@
           <img src="andy.jpg" width="260" height="346" alt="Portrait of Andrew Baldwin" loading="lazy" decoding="async" />
         </picture>
         <div style="max-width:700px">
-          <p>I'm Andrew, a freelance joiner and carpenter with over 20 years of experience in delivering bespoke, high-quality work. Whether it’s a custom designed kitchen, a set of garden gates, or carefully crafted wardrobes — I take pride in every detail. I believe great craftsmanship starts with good relationships, honest work, and making sure every project feels like it matters. Let’s build something together.</p>
+          <p>I'm Andrew, a freelance joiner and carpenter based in the Scottish Borders with over 20 years of experience delivering bespoke, high-quality work. Whether it’s a custom designed kitchen, a set of garden gates, or carefully crafted wardrobes — I take pride in every detail. I believe great craftsmanship starts with good relationships, honest work, and making sure every project feels like it matters. Let’s build something together.</p>
         </div>
       </div>
     </div>
@@ -285,7 +306,7 @@
   <div class="section-divider"></div>
 
   <!-- How it works -->
-  <section id="how-it-works" class="section fade-in">
+  <section id="how-it-works" class="section fade-in bg-alt">
     <div class="container">
       <h2 class="section-title">How It Works</h2>
       <div class="services-grid">
@@ -321,8 +342,8 @@
 
   <div class="section-divider"></div>
 
-  <!-- Crafted Transformations (Accordion Gallery) -->
-  <section id="crafted-transformations" class="section fade-in">
+  <!-- Gallery / Crafted Transformations -->
+  <section id="crafted-transformations" class="section fade-in bg-alt">
     <div class="container">
       <h2 class="section-title">Crafted Transformations</h2>
 
@@ -400,30 +421,12 @@
           </picture>
         </div>
       </div>
-
-      <button class="accordion-button" type="button" aria-expanded="false" aria-controls="acc-4">Outbuilding Storage Room</button>
-      <div id="acc-4" class="accordion-content" role="region" aria-label="Outbuilding storage gallery">
-        <div class="image-block">
-          <picture>
-            <source srcset="before outbuilding storage.avif" type="image/avif">
-            <source srcset="before outbuilding storage.webp" type="image/webp">
-            <img src="before outbuilding storage.jpg" width="340" height="255" alt="Before - Outbuilding storage room" loading="lazy" decoding="async" />
-          </picture>
-        </div>
-        <div class="image-block">
-          <picture>
-            <source srcset="after outbuilding storage.avif" type="image/avif">
-            <source srcset="after outbuilding storage.webp" type="image/webp">
-            <img src="after outbuilding storage.jpg" width="340" height="255" alt="After - Outbuilding storage room" loading="lazy" decoding="async" />
-          </picture>
-        </div>
-      </div>
     </div>
   </section>
 
   <div class="section-divider"></div>
 
-  <!-- Projects / Featured Project (with Before/After slider) -->
+  <!-- Featured Project -->
   <section id="projects" class="section fade-in">
     <div class="container">
       <h2 class="section-title">Featured Project</h2>
@@ -431,7 +434,7 @@
         <p><strong>“From dated kitchen to dream space”</strong></p>
         <p>A Borders-based client needed a complete kitchen refresh for their Edinburgh flat. Working closely with them, we designed a modern new layout, using quality cabinetry and finishes from Howdens Kitchens.</p>
 
-        <!-- Before/After slider (expects featured-before.jpg / featured-after.jpg) -->
+        <!-- Before/After slider -->
         <div class="ba-wrap">
           <div class="ba-frame" id="baFrame">
             <img class="ba-before" src="featured-before.jpg" alt="Before - Featured kitchen project">
@@ -446,7 +449,7 @@
   <div class="section-divider"></div>
 
   <!-- Testimonials -->
-  <section id="testimonials" class="section fade-in">
+  <section id="testimonials" class="section fade-in bg-alt">
     <div class="container">
       <h2 class="section-title">Client Testimonials</h2>
       <div class="testimonial-box">
@@ -476,7 +479,7 @@
   </section>
 
   <!-- Certifications -->
-  <section id="certifications" class="section fade-in">
+  <section id="certifications" class="section fade-in bg-alt">
     <div class="container">
       <h2>Certifications & Training</h2>
       <ul>
@@ -553,11 +556,11 @@
   <footer role="contentinfo">
     <img src="logo.png" width="80" height="80" alt="Andrew Baldwin Logo" loading="lazy" decoding="async" />
     <p><strong>Andrew Baldwin Joinery & Carpentry</strong><br>
-       East Lothian, Scotland • <a href="tel:07813456984" style="color:#fff;">07813 456984</a></p>
+       Scottish Borders, Scotland • <a href="tel:07813456984" style="color:#fff;">07813 456984</a></p>
     <p>© 2025 Andrew Baldwin Joinery. Website by Toby Salvesen</p>
   </footer>
 
-  <!-- JS: defer execution to end; essentials only -->
+  <!-- JS -->
   <script>
     // Sticky shadow on primary nav
     document.addEventListener("scroll", () => {
@@ -566,7 +569,33 @@
       nav.classList.toggle("sticky-shadow", window.scrollY > 10);
     });
 
-    // Accordions (a11y-friendly)
+    // Mobile drawer behaviour + scroll lock
+    (function(){
+      const btn=document.querySelector('.hamburger');
+      const drawer=document.getElementById('mobile-drawer');
+      function openMenu(){
+        document.body.classList.add('menu-open');
+        btn.setAttribute('aria-expanded','true');
+        drawer.hidden=false;
+        document.documentElement.style.overflow='hidden';
+        document.body.style.overflow='hidden';
+      }
+      function closeMenu(){
+        document.body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded','false');
+        setTimeout(()=>{drawer.hidden=true;},250);
+        document.documentElement.style.overflow='';
+        document.body.style.overflow='';
+      }
+      btn?.addEventListener('click',()=>{
+        const expanded=btn.getAttribute('aria-expanded')==='true';
+        expanded?closeMenu():openMenu();
+      });
+      drawer?.addEventListener('click',(e)=>{ if(e.target.tagName==='A') closeMenu(); });
+      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'&&document.body.classList.contains('menu-open')) closeMenu(); });
+    })();
+
+    // Accordions
     const accButtons = document.querySelectorAll(".accordion-button");
     accButtons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -578,7 +607,7 @@
       });
     });
 
-    // Lightbox on gallery images
+    // Lightbox
     document.querySelectorAll(".accordion-content img").forEach(img => {
       img.addEventListener("click", () => {
         const overlay = document.createElement("div");
@@ -591,7 +620,7 @@
       });
     });
 
-    // Simple fade-in on view
+    // Fade-in on view
     const fadeEls = document.querySelectorAll(".fade-in");
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => e.isIntersecting && e.target.classList.add("in-view"));
@@ -605,7 +634,7 @@
       btt.style.display = window.scrollY > 300 ? "flex" : "none";
     });
 
-    // Contact form (Formspree) with honeypot check
+    // Formspree + honeypot
     const form = document.getElementById("contact-form");
     if (form) {
       form.addEventListener("submit", async (e) => {
