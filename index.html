@@ -103,45 +103,6 @@
       background-size: cover;
     }
 
-    /* --- Mobile Nav v2 --- */
-    .mobile-nav { position: sticky; top: 0; z-index: 9999; }
-    .mobile-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 16px;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: saturate(140%) blur(8px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-    .mobile-logo { display:block; border-radius:6px; }
-    .hamburger { font-size:26px; background:none; border:0; cursor:pointer; color:#382910; padding:6px 10px; border-radius:8px; }
-    .hamburger:focus-visible { outline:3px solid #b26e33; outline-offset:3px; }
-
-    .mobile-drawer {
-      position: fixed; inset: 56px 0 0 0;
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(6px);
-      transform: translateY(-8px);
-      opacity: 0; pointer-events: none;
-      transition: transform .25s ease, opacity .25s ease;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-    }
-    body.menu-open .mobile-drawer {
-      transform: translateY(0);
-      opacity: 1; pointer-events: auto;
-    }
-    .mobile-links { list-style:none; margin:0; padding:16px; }
-    .mobile-links li { border-bottom:1px solid rgba(0,0,0,0.06); }
-    .mobile-links a {
-      display:block; padding:14px 6px; text-decoration:none; color:#382910; font-weight:600; font-size:1.05rem;
-    }
-    .mobile-links a.callout { color:#b26e33; }
-    .mobile-links a.call-btn {
-      margin-top:12px; background:#25D366; color:#fff; text-align:center; border-radius:8px; padding:12px; display:block;
-    }
-    @media(min-width:769px){.mobile-nav{display:none;}}
-    @media(max-width:768px){nav.primary{display:none;}}
-
     /* Desktop Primary nav */
     nav.primary{background:var(--walnut);display:flex;justify-content:center;gap:20px;padding:15px;position:sticky;top:0;z-index:999}
     nav.primary a{color:#fff;text-decoration:none;font-weight:600}
@@ -233,27 +194,6 @@
 
   <!-- Skip link -->
   <a class="sr-only sr-only-focusable" href="#main">Skip to content</a>
-
-  <!-- Mobile Nav -->
-  <nav class="mobile-nav" role="navigation" aria-label="Mobile">
-    <div class="mobile-bar">
-      <img src="logo.png" alt="Andrew Baldwin Logo" class="mobile-logo" width="36" height="36">
-      <button class="hamburger" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle menu">☰</button>
-    </div>
-    <div id="mobile-drawer" class="mobile-drawer" hidden>
-      <ul class="mobile-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#crafted-transformations">Gallery</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#credentials">Credentials</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact" class="callout">Contact</a></li>
-        <li><a href="tel:07813456984" class="call-btn">Call Andy</a></li>
-      </ul>
-    </div>
-  </nav>
 
   <!-- Desktop Primary nav -->
   <nav class="primary" aria-label="Primary">
