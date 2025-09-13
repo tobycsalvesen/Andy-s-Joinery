@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <title>Andrew Baldwin | Expert Joinery & Carpentry in East Lothian</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Joinery and carpentry services by Andrew Baldwin across Scottish Borders, East Lothian and Edinburgh. Bespoke interiors, kitchens, decking, and more – built with precision and care." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Andrew Baldwin | Expert Joiner & Carpenter" />
+  <meta property="og:description" content="Joinery and carpentry services across the Scottish Borders, East Lothian and Edinburgh." />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://andrewbaldwinjoinery.co.uk" />
+
+  <!-- LocalBusiness schema (expanded) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Andrew Baldwin Joinery & Carpentry",
+    "image": "https://example.com/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "East Lothian",
+      "addressRegion": "Scotland",
+      "addressCountry": "UK"
+    },
+    "areaServed":[
+      {"@type":"City","name":"Edinburgh"},
+      {"@type":"AdministrativeArea","name":"East Lothian"},
+      {"@type":"AdministrativeArea","name":"Scottish Borders"}
+    ],
+    "telephone": "+447813456984",
+    "url": "https://andrewbaldwinjoinery.co.uk",
+    "openingHours": "Mo-Fr 08:00-17:30"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Do you supply kitchens or fit only?","acceptedAnswer":{"@type":"Answer","text":"We can do both. We often plan and fit Howdens but are happy to work with your supplier."}},
+      {"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"Edinburgh, East Lothian and the Scottish Borders."}},
+      {"@type":"Question","name":"Can you project manage other trades?","acceptedAnswer":{"@type":"Answer","text":"Yes. We coordinate schedules and quality for a smooth build."}}
+    ]
+  }
+  </script>
+
+  <!-- Fonts (display swap via Google; exact weights only) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons (kept FA for now; consider inlining SVGs later) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root{
+      --walnut:#5a3e28;
+      --clay:#b26e33;
+      --ivory:#fffdf6;
+      --charcoal:#222;
+    }
+    /* Base */
+    html,body{margin:0;padding:0}
+    body{
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      font-size:16px; line-height:1.7;
+      background:#fdfbf7;
+      color:#382910;
+      scroll-behavior:smooth;
+    }
+    h1,h2,h3{font-family:'DM Serif Display',serif; line-height:1.25; color:#3a2e2a}
+
+    /* Accessibility helpers */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .sr-only-focusable:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal;padding:8px;background:#fff3cd;border:2px solid #b26e33;border-radius:6px}
+    :focus-visible{outline:3px solid #b26e33; outline-offset:3px}
+
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important;transition:none!important}
+      .fade-in{opacity:1!important;transform:none!important}
+    }
+
+    /* Utility */
+    .container{max-width:1100px;margin:auto;padding:0 20px}
+    .section{padding:72px 20px}
+    .section-divider{
+      height:8px;
+      width:100%;
+      margin:0;
+      background-image: url("wood-texture.jpg");
+      background-repeat: repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    /* Mobile top nav */
+    .mobile-nav{background:#fff;padding:10px 20px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .menu-toggle{font-size:24px;background:none;border:0;color:#382910;cursor:pointer}
+    .nav-links{display:none;list-style:none;margin:0;padding:0}
+    .menu-open .nav-links{display:block}
+    .nav-links li{margin-top:10px}
+    .nav-links a{text-decoration:none;color:#382910}
+    .call-cta{display:inline-block;background:#25d366;color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:700}
+
+    /* Sticky primary nav */
+    nav.primary{background:var(--walnut);display:flex;justify-content:center;gap:20px;padding:15px;position:sticky;top:0;z-index:999}
+    nav.primary a{color:#fff;text-decoration:none;font-weight:600}
+    nav.sticky-shadow{box-shadow:0 4px 8px rgba(0,0,0,.1)}
+
+    /* Hero with texture + overlay */
+    .hero{
+      position:relative;
+      color:#fff;
+      padding:80px 20px;
+      background-image:url("wood-texture.jpg");
+      background-repeat:repeat;
+      background-position:center;
+      background-size:cover;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:rgba(0,0,0,0.45);
+      z-index:0;
+    }
+    .hero .wrap{position:relative; z-index:1; display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+    .hero .logo{max-width:140px;height:auto}
+    .hero h1{font-size:2.6rem;margin:0 0 10px}
+    .hero p{font-size:1.1rem;margin:0 0 12px}
+    .cta-button{display:inline-block;margin-top:10px;padding:12px 20px;background:var(--clay);color:#fff;border-radius:6px;text-decoration:none;font-weight:700;transition:.2s transform,.3s background}
+    .cta-button:hover{background:#914d1c;transform:scale(1.04)}
+
+    /* Sections */
+    .section-title{font-size:2rem;margin:0 0 16px;border-left:6px solid var(--clay);padding-left:12px}
+
+    /* About */
+    .about{display:flex;gap:40px;flex-wrap:wrap;align-items:center}
+    .about img{width:260px; height:auto; border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+
+    /* Services */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .service-card{background:#fff;padding:16px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.05);text-align:center;transition:.3s transform,.3s box-shadow}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 8px 16px rgba(0,0,0,.06)}
+    .service-card i{font-size:24px;margin-bottom:10px;color:var(--clay)}
+    .service-card h3{margin:6px 0 6px;font-size:1.1rem}
+
+    /* Accordion Gallery */
+    .accordion-button{background-color:#5a4632;color:#fff;cursor:pointer;padding:1rem 1.25rem;width:100%;text-align:left;border:0;outline:0;font-size:1.1rem;font-weight:600;border-radius:6px;transition:.3s background,.3s box-shadow;box-shadow:0 4px 8px rgba(0,0,0,.1);margin-top:1rem}
+    .accordion-button:hover{background-color:#715a43}
+    .accordion-button[aria-expanded="true"]{background:#3d2e1f}
+    .accordion-content{background:#f8f6f2;padding:0 1rem;border-radius:0 0 6px 6px;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden;max-height:0;transition:max-height .35s ease,padding .25s ease}
+    .accordion-content.open{padding:1rem}
+    .accordion-content .image-block{display:inline-block;margin:6px;vertical-align:top}
+    .accordion-content img{max-width:340px;width:100%;height:auto;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer;aspect-ratio:4/3;object-fit:cover}
+
+    /* Before/After slider (Featured Project) */
+    .ba-wrap{max-width:900px;margin:16px 0; position:relative}
+    .ba-frame{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    .ba-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+    .ba-after{clip-path:inset(0 0 0 50%)} /* start at middle */
+    .ba-slider{width:100%}
+
+    /* Testimonials */
+    #testimonials{background:#fdfcf9;text-align:center;padding:60px 20px}
+    .testimonial-box{display:flex;flex-wrap:wrap;justify-content:center;gap:32px}
+    .testimonial{max-width:320px;font-style:italic;background:#fff;padding:20px;border-left:4px solid #6b4d38;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .testimonial span{display:block;margin-top:10px;font-weight:700;color:#3a2e2a}
+
+    /* Contact */
+    .contact-form{background:#f7f5f0;padding:20px;border-radius:10px;margin-top:20px;max-width:600px}
+    .contact-form label{display:block;margin-top:10px;font-weight:700}
+    .contact-form input,.contact-form textarea,.contact-form select{width:100%;padding:10px;margin-top:4px;border:1px solid #ccc;border-radius:5px}
+    .contact-form button{margin-top:15px;background:#382910;color:#fff;border:0;padding:10px 20px;font-weight:700;cursor:pointer;border-radius:5px}
+    /* Honeypot */
+    .hp{position:absolute; left:-5000px;}
+
+    /* Back to top */
+    #backToTop{position:fixed;right:20px;bottom:20px;background:#333;color:#fff;border-radius:50%;width:42px;height:42px;display:none;align-items:center;justify-content:center;text-decoration:none}
+    #backToTop i{line-height:42px}
+
+    /* WhatsApp */
+    .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25D366;color:#fff;border-radius:50%;font-size:24px;padding:14px;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,.15);text-align:center}
+
+    /* Simple fade-in on view */
+    .fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.in-view{opacity:1;transform:none}
+
+    /* Alternating section background */
+    section:nth-of-type(even){background:#f4f1ed}
+    section:nth-of-type(odd){background:#ffffff}
+
+    /* Footer with texture + overlay */
+    footer{
+      color:#fff;text-align:center;padding:40px 20px; position: relative;
+      background-image:url('wood-texture.jpg'); background-repeat:repeat; background-position:center; background-size:cover;
+    }
+    footer::before{content:""; position:absolute; inset:0; background:rgba(0,0,0,0.55); z-index:0}
+    footer *{position:relative; z-index:1}
+    footer img{width:80px;height:auto;margin-bottom:12px}
+
+    @media (max-width:768px){
+      .hero h1{font-size:2.1rem}
+      .call-cta{display:inline-block}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip link -->
+  <a class="sr-only sr-only-focusable" href="#main">Skip to content</a>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.body.classList.toggle('menu-open')">☰</button>
+    <a class="call-cta" href="tel:07813456984">Call Andy</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#crafted-transformations">Gallery</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="section-divider"></div>
+
+  <!-- Hero -->
+  <header class="hero section fade-in" id="top">
+    <div class="container wrap">
+      <picture>
+        <source srcset="logo.avif" type="image/avif">
+        <source srcset="logo.webp" type="image/webp">
+        <img class="logo" src="logo.png" width="140" height="140" alt="Andrew Baldwin Logo" decoding="async" />
+      </picture>
+      <div>
+        <h1>Andrew Baldwin – Exceptional Joinery, Built to Last</h1>
+        <p>From bespoke interiors to outdoor structures — expertly crafted across the Scottish Borders, East Lothian and Edinburgh.</p>
+        <p><a class="cta-button" href="#contact">Request a Quote</a></p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Primary nav -->
+  <nav class="primary" aria-label="Primary">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#crafted-transformations">Gallery</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#credentials">Credentials</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main id="main">
+
+  <div class="section-divider"></div>
+
+  <!-- About -->
+  <section id="about" class="section fade-in">
+    <div class="container">
+      <h2 class="section-title">About Andy</h2>
+      <div class="about">
+        <picture>
+          <source srcset="andy.avif" type="image/avif">
+          <source srcset="andy.webp" type="image/webp">
+          <img src="andy.jpg" width="260" height="346" alt="Portrait of Andrew Baldwin" loading="lazy" decoding="async" />
+        </picture>
+        <div style="max-width:700px">
+          <p>I'm Andrew, a freelance joiner and carpenter with over 20 years of experience in delivering bespoke, high-quality work. Whether it’s a custom designed kitchen, a set of garden gates, or carefully crafted wardrobes — I take pride in every detail. I believe great craftsmanship starts with good relationships, honest work, and making sure every project feels like it matters. Let’s build something together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="section fade-in">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="services-grid">
+        <div class="service-card"><div class="step-icon" aria-hidden="true">📞</div><h3>1. Initial Chat</h3><p>We discuss your needs, style and budget.</p></div>
+        <div class="service-card"><div class="step-icon" aria-hidden="true">📐</div><h3>2. Planning</h3><p>I take measurements, design the layout, source materials and give you an estimate of cost.</p></div>
+        <div class="service-card"><div class="step-icon" aria-hidden="true">🛠️</div><h3>3. Build</h3><p>I get to work, keeping you updated at each stage.</p></div>
+        <div class="service-card"><div class="step-icon" aria-hidden="true">✅</div><h3>4. Completion</h3><p>We inspect the final work together to make sure you're happy.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Services -->
+  <section id="services" class="section fade-in">
+    <div class="container">
+      <h2 class="section-title">Services</h2>
+      <div class="services-grid">
+        <div class="service-card"><i class="fas fa-hammer" aria-hidden="true"></i><h3>Carpentry & Joinery</h3><p>Interior and exterior bespoke woodwork tailored to your needs.</p></div>
+        <div class="service-card"><i class="fas fa-utensils" aria-hidden="true"></i><h3>Kitchens</h3><p>Designed kitchen fitting</p></div>
+        <div class="service-card"><i class="fas fa-bed" aria-hidden="true"></i><h3>Bedroom Wardrobes</h3><p>Built-in and fitted wardrobes with smart storage solutions.</p></div>
+        <div class="service-card"><i class="fas fa-tree" aria-hidden="true"></i><h3>Gates & Fencing</h3><p>Timber gates and secure fencing for gardens, paths, and boundaries.</p></div>
+        <div class="service-card"><i class="fas fa-home" aria-hidden="true"></i><h3>Timber Buildings & Bridges</h3><p>Outdoor structures and timber bridgework for practical access and charm.</p></div>
+        <div class="service-card"><i class="fas fa-align-left" aria-hidden="true"></i><h3>Plasterboarding</h3><p>Clean, efficient plasterboard fitting for walls and ceilings.</p></div>
+        <div class="service-card"><i class="fas fa-ruler" aria-hidden="true"></i><h3>Taping & Jointing</h3><p>Professional tape and joint services for smooth, ready-to-paint surfaces.</p></div>
+        <div class="service-card"><i class="fas fa-project-diagram" aria-hidden="true"></i><h3>Project Management</h3><p>Keep everything on time and within budget.</p></div>
+        <div class="service-card"><i class="fas fa-calculator" aria-hidden="true"></i><h3>Estimating / Pricing</h3><p>Transparent quotes and budget planning support from the start.</p></div>
+        <div class="service-card"><i class="fas fa-map" aria-hidden="true"></i><h3>Programming / Planning</h3><p>Carefully mapped project timelines for efficient and predictable delivery.</p></div>
+        <div class="service-card"><i class="fas fa-handshake" aria-hidden="true"></i><h3>Quality Assurance</h3><p>Every job is finished to the highest standards — guaranteed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Crafted Transformations (Accordion Gallery) -->
+  <section id="crafted-transformations" class="section fade-in">
+    <div class="container">
+      <h2 class="section-title">Crafted Transformations</h2>
+
+      <button class="accordion-button" type="button" aria-expanded="false" aria-controls="acc-1">Shed & Log Store</button>
+      <div id="acc-1" class="accordion-content" role="region" aria-label="Shed & Log Store gallery">
+        <div class="image-block">
+          <picture>
+            <source srcset="Before Shed and log store.avif" type="image/avif">
+            <source srcset="Before Shed and log store.webp" type="image/webp">
+            <img src="Before Shed and log store.jpg" width="340" height="255" alt="Before - Shed and log store" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="image-block">
+          <picture>
+            <source srcset="during shed and log store.avif" type="image/avif">
+            <source srcset="during shed and log store.webp" type="image/webp">
+            <img src="during shed and log store.jpg" width="340" height="255" alt="During - Shed and log store" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="image-block">
+          <picture>
+            <source srcset="after shed and log store.avif" type="image/avif">
+            <source srcset="after shed and log store.webp" type="image/webp">
+            <img src="after shed and log store.jpg" width="340" height="255" alt="After - Shed and log store" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      </div>
+
+      <button class="accordion-button" type="button" aria-expanded="false" aria-controls="acc-2">Timber Bridge</button>
+      <div id="acc-2" class="accordion-content" role="region" aria-label="Timber bridge gallery">
+        <div class="image-block">
+          <picture>
+            <source srcset="Before bridge.avif" type="image/avif">
+            <source srcset="Before bridge.webp" type="image/webp">
+            <img src="Before bridge.jpg" width="340" height="255" alt="Before - Timber bridge" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="image-block">
+          <picture>
+            <source srcset="during bridge.avif" type="image/avif">
+            <source srcset="during bridge.webp" type="image/webp">
+            <img src="during bridge.jpg" width="340" height="255" alt="During - Timber bridge" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="image-block">
+          <picture>
+            <source srcset="after bridge.avif" type="image/avif">
+            <source srcset="after bridge.webp" type="image/webp">
+            <img src="after bridge.jpg" width="340" height="255" alt="After - Timber bridge" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      </div>
+
+      <button class="accordion-button" type="button" aria-expanded="false" aria-controls="acc-3">Conservatory</button>
+      <div id="acc-3" class="accordion-content" role="region" aria-label="Conservatory gallery">
+        <div class="image-block">
+          <picture>
+            <source srcset="before conservatory.avif" type="image/avif">
+            <source srcset="before conservatory.webp" type="image/webp">
+            <img src="before conservatory.jpg" width="340" height="255" alt="Before - Conservatory" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="image-block">
+          <picture>
+            <source srcset="During Conservatory.avif" type="image/avif">
+            <source srcset="During Conservatory.webp" type="image/webp">
+            <img src="During Conservatory.jpg" width="340" height="255" alt="During - Conservatory" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="image-block">
+          <picture>
+            <source srcset="After Conservatory.avif" type="image/avif">
+            <source srcset="After Conservatory.webp" type="image/webp">
+            <img src="After Conservatory.jpg" width="340" height="255" alt="After - Conservatory" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      </div>
+
+      <button class="accordion-button" type="button" aria-expanded="false" aria-controls="acc-4">Outbuilding Storage Room</button>
+      <div id="acc-4" class="accordion-content" role="region" aria-label="Outbuilding storage gallery">
+        <div class="image-block">
+          <picture>
+            <source srcset="before outbuilding storage.avif" type="image/avif">
+            <source srcset="before outbuilding storage.webp" type="image/webp">
+            <img src="before outbuilding storage.jpg" width="340" height="255" alt="Before - Outbuilding storage room" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="image-block">
+          <picture>
+            <source srcset="after outbuilding storage.avif" type="image/avif">
+            <source srcset="after outbuilding storage.webp" type="image/webp">
+            <img src="after outbuilding storage.jpg" width="340" height="255" alt="After - Outbuilding storage room" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Projects / Featured Project (with Before/After slider) -->
+  <section id="projects" class="section fade-in">
+    <div class="container">
+      <h2 class="section-title">Featured Project</h2>
+      <div class="project">
+        <p><strong>“From dated kitchen to dream space”</strong></p>
+        <p>A Borders-based client needed a complete kitchen refresh for their Edinburgh flat. Working closely with them, we designed a modern new layout, using quality cabinetry and finishes from Howdens Kitchens.</p>
+
+        <!-- Before/After slider (expects featured-before.jpg / featured-after.jpg) -->
+        <div class="ba-wrap">
+          <div class="ba-frame" id="baFrame">
+            <img class="ba-before" src="featured-before.jpg" alt="Before - Featured kitchen project">
+            <img class="ba-after" src="featured-after.jpg" alt="After - Featured kitchen project">
+          </div>
+          <input class="ba-slider" id="baRange" type="range" min="0" max="100" value="50" aria-label="Before and after slider">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section fade-in">
+    <div class="container">
+      <h2 class="section-title">Client Testimonials</h2>
+      <div class="testimonial-box">
+        <div class="testimonial">
+          <p>“ADD TESTIMONIAL HERE...”</p>
+          <span>— Salvesen. T</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Credentials -->
+  <section id="credentials" class="section fade-in">
+    <div class="container">
+      <h2>Credentials & Experience</h2>
+      <ul>
+        <li>40+ years in construction, carpentry, and joinery</li>
+        <li>Former Contracts Manager & Construction Director for large-scale developments</li>
+        <li>Managed up to 600-unit developments and bespoke residential projects</li>
+        <li>Fully certified: NVQ Level 7, SMSTS, CIOB Site Management, and more</li>
+        <li>Expertise in both traditional craftsmanship and modern techniques</li>
+        <li>Focus on safety, build quality, and client satisfaction</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="section fade-in">
+    <div class="container">
+      <h2>Certifications & Training</h2>
+      <ul>
+        <li>CIOB Site Management Certificate</li>
+        <li>NVQ Level 7</li>
+        <li>SMSTS Certificate</li>
+        <li>IOSH Managing Safely</li>
+        <li>Temporary Works Coordinator</li>
+        <li>SEATS</li>
+        <li>Scaffold Inspection</li>
+        <li>Fire Warden</li>
+        <li>NHQC</li>
+        <li>Leadership and Presentation</li>
+        <li>Cat and Genny</li>
+        <li>Safety Deck Training</li>
+        <li>CPCS Validator no 1429810</li>
+        <li>City and Guilds - Advanced Carpentry and Joinery</li>
+        <li>City and Guilds - Carpentry and Joinery</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Contact -->
+  <section id="contact" class="section fade-in">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p><strong>Phone:</strong> <a href="tel:07813456984">07813 456984</a><br/>
+         <strong>Email:</strong> <a href="mailto:andybaldwin02@outlook.com">andybaldwin02@outlook.com</a></p>
+
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+        <h3>Request a Quote or Send a Message</h3>
+
+        <!-- Honeypot -->
+        <label class="hp" for="website">Website</label>
+        <input class="hp" id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" required />
+
+        <label for="email">Your Email</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="service">Service Interested In</label>
+        <select id="service" name="service">
+          <option>General Enquiry</option>
+          <option>Kitchens</option>
+          <option>Wardrobes</option>
+          <option>Gates &amp; Fencing</option>
+          <option>Timber Buildings</option>
+          <option>Plasterboarding</option>
+          <option>Project Management</option>
+          <option>Other</option>
+        </select>
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+        <p id="form-success" class="form-success" style="display:none;">Thanks for reaching out! I’ll be in touch shortly.</p>
+      </form>
+
+      <a class="cta-button" href="https://wa.me/447813456984?text=Hi%20Andy%2C%20I'm%20interested%20in%20your%20carpentry%20services." target="_blank" rel="noopener">Message us on WhatsApp</a>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Back to top -->
+  <a id="backToTop" class="fade-in" href="#top" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <img src="logo.png" width="80" height="80" alt="Andrew Baldwin Logo" loading="lazy" decoding="async" />
+    <p><strong>Andrew Baldwin Joinery & Carpentry</strong><br>
+       East Lothian, Scotland • <a href="tel:07813456984" style="color:#fff;">07813 456984</a></p>
+    <p>© 2025 Andrew Baldwin Joinery. Website by Toby Salvesen</p>
+  </footer>
+
+  <!-- JS: defer execution to end; essentials only -->
+  <script>
+    // Sticky shadow on primary nav
+    document.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav.primary");
+      if (!nav) return;
+      nav.classList.toggle("sticky-shadow", window.scrollY > 10);
+    });
+
+    // Accordions (a11y-friendly)
+    const accButtons = document.querySelectorAll(".accordion-button");
+    accButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const panel = document.getElementById(btn.getAttribute("aria-controls"));
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        panel.classList.toggle("open", !open);
+        panel.style.maxHeight = !open ? panel.scrollHeight + "px" : null;
+      });
+    });
+
+    // Lightbox on gallery images
+    document.querySelectorAll(".accordion-content img").forEach(img => {
+      img.addEventListener("click", () => {
+        const overlay = document.createElement("div");
+        overlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:10000";
+        const fullImg = document.createElement("img");
+        fullImg.src = img.src; fullImg.alt = img.alt; fullImg.style.cssText = "max-width:90%;max-height:90%;object-fit:contain;box-shadow:0 0 15px rgba(0,0,0,.5)";
+        overlay.appendChild(fullImg);
+        overlay.addEventListener("click", () => document.body.removeChild(overlay));
+        document.body.appendChild(overlay);
+      });
+    });
+
+    // Simple fade-in on view
+    const fadeEls = document.querySelectorAll(".fade-in");
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add("in-view"));
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => io.observe(el));
+
+    // Back-to-top toggle
+    const btt = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      if (!btt) return;
+      btt.style.display = window.scrollY > 300 ? "flex" : "none";
+    });
+
+    // Contact form (Formspree) with honeypot check
+    const form = document.getElementById("contact-form");
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        if (document.getElementById('website').value) { e.preventDefault(); return; } // bot
+        e.preventDefault();
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        });
+        if (res.ok) {
+          form.reset();
+          const ok = document.getElementById("form-success");
+          if (ok) ok.style.display = "block";
+          ok?.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    }
+
+    // Before/After slider logic
+    const baRange = document.getElementById('baRange');
+    const baAfter = document.querySelector('.ba-after');
+    if (baRange && baAfter) {
+      baRange.addEventListener('input', () => {
+        const v = baRange.value; // 0..100
+        baAfter.style.clipPath = `inset(0 0 0 ${v}%)`;
+      });
+    }
+  </script>
+</body>
+</html>
