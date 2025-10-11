@@ -520,8 +520,9 @@
       <h2 class="section-title">Client Testimonials</h2>
       <div class="testimonial-box">
         <div class="testimonial">
-          <p>“ADD TESTIMONIAL HERE...”</p>
-          <span>— Salvesen. T</span>
+          <p>“Andy has just installed a kitchen for me and I am delighted with his work.    Various complications and issues arose during the fit - as always happens - all of which he coped with admirably, making the necessary adjustments.
+He was unfailingly polite and kept me well informed on progress. I intend to ask Andy to do any future joinery work for us, and would recommend him unreservedly.”</p>
+          <span>— Sharp. S</span>
         </div>
       </div>
     </div>
@@ -697,6 +698,17 @@
       if (!btt) return;
       btt.style.display = window.scrollY > 300 ? "flex" : "none";
     });
+
+    
+    // Before/After slider logic
+    const baRange = document.getElementById('baRange');
+    const baAfter = document.querySelector('.ba-after');
+    if (baRange && baAfter) {
+      baRange.addEventListener('input', () => {
+        const v = baRange.value; // 0..100
+        baAfter.style.clipPath = `inset(0 0 0 ${v}%)`;
+      });
+    }
 
     </script>
 </body>
